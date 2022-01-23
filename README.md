@@ -9,14 +9,11 @@
 | first_name           | string     | null: false                    |
 | last_name_ruby       | string     | null: false                    |
 | first_name_ruby      | string     | null: false                    |
-| year                 | string     | null: false                    |
-| month                | string     | null: false                    |
-| date                 | string     | null: false                    |
+| birthday             | date       | null: false                    |
 
 ### Association
 - has_many :items
 - has_many :orders
-- has_many :addresses
 
 ## itemsテーブル
 
@@ -24,25 +21,24 @@
 | -------------------- | ---------- | ------------------------------ |
 | title                | string     | null: false                    |
 | content              | text       | null: false                    |
-| category             | string     | null: false                    |
-| state                | string     | null: false                    |
-| delivery_charge      | string     | null: false                    |
-| consignor_address    | string     | null: false                    |
-| term                 | string     | null: false                    |
+| category_id          | integer    | null: false                    |
+| state_id             | integer    | null: false                    |
+| charge_id            | integer    | null: false                    |
+| area_id              | integer    | null: false                    |
+| term_id              | integer    | null: false                    |
 | price                | integer    | null: false                    |
-| sell_user            | references | null: false, foreign_key: true |
+| user                 | references | null: false, foreign_key: true |
 
 
 ### Association
 - belongs_to :user
 - has_one :order
-- has_one :address
 
 ## ordersテーブル
 
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
-| buy_user             | references | null: false, foreign_key: true |
+| user                 | references | null: false, foreign_key: true |
 | item                 | references | null: false, foreign_key: true |
 
 ### Association
@@ -55,14 +51,12 @@
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
 | post_code            | string     | null: false                    |
-| prefecture           | string     | null: false                    |
+| area_id              | integer    | null: false                    |
 | city                 | string     | null: false                    |
-| address_number       | string     | null: false                    |
-| build                | string     |                                |
-| telephone_number     | string     | null: false                    |
+| address_number       | references | null: false, foreign_key: true |
+| build                | references | null: false, foreign_key: true |
+| telephone_number     | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user
-- belongs_to :item
 - belongs_to :order
 
