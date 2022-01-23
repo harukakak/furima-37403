@@ -53,9 +53,10 @@
 | post_code            | string     | null: false                    |
 | area_id              | integer    | null: false                    |
 | city                 | string     | null: false                    |
-| address_number       | references | null: false, foreign_key: true |
-| build                | references | null: false, foreign_key: true |
-| telephone_number     | references | null: false, foreign_key: true |
+| address_number       | string     | null: false                    |
+| build                | string     | null: false                    |
+| telephone_number     | string     | null: false                    |
+| order_address        | references | null: false,foreign_key:true   |
 
 ### Association
 - belongs_to :order
