@@ -22,7 +22,7 @@
 | title                | string     | null: false                    |
 | content              | text       | null: false                    |
 | category_id          | integer    | null: false                    |
-| state_id             | integer    | null: false                    |
+| status_id             | integer    | null: false                    |
 | charge_id            | integer    | null: false                    |
 | area_id              | integer    | null: false                    |
 | term_id              | integer    | null: false                    |
@@ -54,9 +54,9 @@
 | area_id              | integer    | null: false                    |
 | city                 | string     | null: false                    |
 | address_number       | string     | null: false                    |
-| build                | string     | null: false                    |
+| build                | string     |                                |
 | telephone_number     | string     | null: false                    |
-| order_address        | references | null: false,foreign_key:true   |
+| order                | references | null: false,foreign_key:true   |
 
 ### Association
 - belongs_to :order
