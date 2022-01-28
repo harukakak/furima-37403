@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set, only: [:show, :edit, :update, :destroy]
 
   def set
     @item = Item.find(params[:id])
@@ -28,6 +28,15 @@ class ItemsController < ApplicationController
 
   def edit
     redirect_to action: :index unless current_user.id == @item.user_id
+  end
+
+  def destroy
+    if current_user.id == @item.user_id
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to action: :index
+    end
   end
 
   def update
