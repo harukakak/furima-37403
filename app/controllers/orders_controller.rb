@@ -3,11 +3,18 @@ before_action :authenticate_user!, only: [:index, :create]
 
   def index
     @item = Item.find(params[:item_id])
+    @order_address = OrderAddress.new
+  end
+
+  def new
+    @order_address = OrderAddress.new
   end
 
   def create
-    @item_buy = Order_address.new(order_params)
-    if @item_buy.save
+    @item = Item.find(params[:item_id])
+    @order_address = OrderAddress.new(order_params)
+    if @order_address.valid?
+      @order_address.save
       redirect_to root_path
     else
       render :index
@@ -15,10 +22,8 @@ before_action :authenticate_user!, only: [:index, :create]
   end
 
   private
-  # def item_params
-  #   params.require(:item).permit(:title, :content, :category_id, :status_id, :charge_id, :area_id, :term_id, :price,:image).merge(user_id: params[:user_id],item_id:params[:item_id])
-  # end
   def order_params
-    params.require(:order_address).permit(:post_code, :area_id, :city, :address_number, :build, :telephone_number).merge(order_id: params[:order_id],user_id: params[:user_id],item_id:params[:item_id])
+    params.require(:order_address).permit(:post_code, :area_id, :city, :address_number, :build, :telephone_number).
+    merge(user_id: current_user.id,item_id: params[:item_id])
   end
 end
