@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set, only: [:show, :edit, :update]
+  before_action :set, only: [:show, :edit, :update, :destroy]
 
   def set
     @item = Item.find(params[:id])
@@ -31,8 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
+    @item.destroy
     redirect_to root_path
   end
 
