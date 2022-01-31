@@ -3,6 +3,7 @@ const pay = () => {
   const submit = document.getElementById("button");
   submit.addEventListener("click", (e) => {
     e.preventDefault();
+    console.log(process.env.PAYJP_PUBLIC_KEY)
 
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
@@ -21,7 +22,6 @@ const pay = () => {
         const tokenObj = `<input value=${token} name='token' type="hidden"> `;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
-      console.log(status)
 
       document.getElementById("card-number").removeAttribute("name");
       document.getElementById("card-cvc").removeAttribute("name");
