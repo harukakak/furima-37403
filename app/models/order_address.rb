@@ -1,6 +1,6 @@
 class OrderAddress 
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_code, :area_id, :city, :address_number, :build, :telephone_number, :order_id
+  attr_accessor :user_id, :item_id, :post_code, :area_id, :city, :address_number, :build, :telephone_number, :order_id, :token
 
   with_options presence: true do
     validates :post_code, format: { with: /\A\d{3}[-]\d{4}$|/, message: "is invalid. Input full-width characters." }
@@ -8,6 +8,7 @@ class OrderAddress
     validates :area_id, :city, :address_number
   end
   validates :user_id, :item_id, presence: true
+  validates :token, presence: true
 
   def save
     order = Order.create(user_id: user_id,item_id: item_id)
