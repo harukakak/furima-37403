@@ -1,14 +1,13 @@
 FactoryBot.define do
-  factory :address do
-    number             { 4242424242424242 }
-    exp_month          { 3 }
-    exp_year           { 33 }
-    cvc                { 123 }
-    post_code          { Faker::Address.zip }
+  factory :order_address do
+    post_code          { "234-0015" }
     area_id            { 2 }
     city               { Faker::Address.city }
     address_number     { Faker::Address.zip_code }
     build              { Faker::Address.street_suffix }
     telephone_number   { Faker::Number.leading_zero_number(digits: 10) }
+    token              { "tok_abcdefghijk00000000000000000" }
+    user_id            { 2 }
+    item_id            { 2 }
   end
 end
