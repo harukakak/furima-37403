@@ -3,7 +3,7 @@ before_action :authenticate_user!, only: [:index, :create, :new]
 before_action :set, only: [:index, :create]
 
   def set
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
   end
 
   def index
@@ -11,10 +11,6 @@ before_action :set, only: [:index, :create]
     if @item.order.present? || @item.user_id == current_user.id
       redirect_to root_path
     end
-  end
-
-  def new
-    @order_address = OrderAddress.new
   end
 
   def create
