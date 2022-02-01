@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
-    title             { Faker::Coffee.origin }
-    content           { Faker::Coffee.origin }
+    title             { Faker::Name.initials(number: 2) }
+    content           { Faker::Name.initials(number: 2) }
     category_id       { 2 }
     status_id         { 2 }
     charge_id         { 2 }
